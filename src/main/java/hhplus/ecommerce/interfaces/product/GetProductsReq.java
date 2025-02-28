@@ -6,14 +6,14 @@ import org.springframework.data.domain.Pageable;
 
 public record GetProductsReq(
         String productName,
-        long minPrice,
-        long maxPrice,
+        Long minPrice,
+        Long maxPrice,
         int page,
         int size
 ) {
     public GetProductsReq {
         if (page < 0) page = 0;
-        if (size <= 0) size = 10;
+        if (size <= 0) size = 100;
     }
 
     public GetProductsByFilterCommand toCommand() {

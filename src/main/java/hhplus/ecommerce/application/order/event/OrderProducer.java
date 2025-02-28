@@ -1,7 +1,6 @@
 package hhplus.ecommerce.application.order.event;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import hhplus.ecommerce.support.exception.BusinessException;
 import hhplus.ecommerce.support.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderProducer {
 
     private final KafkaTemplate<String , String> kafkaTemplate;
-    private final ObjectMapper objectMapper;
+    private final MessageConverter messageConverter;
     @Transactional
     public void sendMessage(OrderEvent event) {
         try {
-            String message = objectMapper.writeValueAsString(event);
-            kafkaTemplate.send("order-create",message);
-        }catch (JsonProcessingException e) {
-            throw new BusinessException(ErrorCode.ORDER_JSON_PARSE_ERROR);
+            String message = messageConverter.serialize(event);
+            kafkaTemplate.send("order-create.v1",message);
         }catch (Exception e) {
             throw new BusinessException(ErrorCode.Kafka_NETWORT_FAILED);
         }
