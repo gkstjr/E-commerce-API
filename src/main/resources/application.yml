@@ -1,3 +1,4 @@
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -6,13 +7,13 @@ spring:
     password: test
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
-      maximum-pool-size: 3
+      maximum-pool-size: 100
       connection-timeout: 10000
       max-lifetime: 60000
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate.timezone.default_storage: NORMALIZE_UTC
       hibernate.jdbc.time_zone: UTC
@@ -26,3 +27,10 @@ spring:
     redis:
       host: localhost
       port: 6379
+server:
+  tomcat:
+    threads:
+      max: 1000
+      min-spare: 100
+    accept-count: 500
+    connection-timeout: 5s
