@@ -2,6 +2,7 @@ package hhplus.ecommerce.interfaces.order.event;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hhplus.ecommerce.application.order.event.MessageConverter;
 import hhplus.ecommerce.application.order.event.OrderEvent;
 import hhplus.ecommerce.application.order.event.OrderOutbox.OrderOutboxStatus;
 import hhplus.ecommerce.application.order.event.OrderProducer;
@@ -21,7 +22,7 @@ public class OutboxCheckScheduler {
 
     private final OrderRepository orderRepository;
     private final OrderProducer producer;
-    private final ObjectMapper objectMapper;
+    private final MessageConverter converter;
 
     @Scheduled(fixedDelay = 5000)
     public void verifyOutboxStatus(){
@@ -29,12 +30,8 @@ public class OutboxCheckScheduler {
                 .stream()
                 .filter(event -> ChronoUnit.MINUTES.between(event.getCreatedAt(), LocalDateTime.now()) > 5)
                 .forEach(event -> {
-                    try {
-                        OrderEvent orderEvent = objectMapper.readValue(event.getPayload(), OrderEvent.class);
+                        OrderEvent orderEvent = converter.deserialize(event.getPayload(), OrderEvent.class);
                         producer.sendMessage(orderEvent);
-                    } catch (JsonProcessingException e) {
-                        throw  new BusinessException(ErrorCode.ORDER_JSON_PARSE_ERROR);
-                    }
                 });
     }
 }
