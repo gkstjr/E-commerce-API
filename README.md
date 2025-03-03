@@ -1,10 +1,12 @@
 
-### 학습 기록
-- 캐시(전략) 개념 정리 : https://hsdevstudy.tistory.com/43 <br>
-- E-Commerce Redis사용 보고서 : https://hsdevstudy.tistory.com/44
-- 인덱스 개념 정리 : https://hsdevstudy.tistory.com/45
-- 인덱스 적용 후 테스트 성능 보고서 : https://hsdevstudy.tistory.com/46
-- MSA 환경에서 트랜잭션 처리 문서: https://hsdevstudy.tistory.com/47
+### 블로그 보고서 정리
+- [API Swagger(명세서)](https://app.swaggerhub.com/apis-docs/HANSEOK8541/E-commerce/1.0.0)
+- [캐시(전략) 개념 정리](https://hsdevstudy.tistory.com/43)
+- [E-Commerce Redis사용 보고서](https://hsdevstudy.tistory.com/44)
+- [인덱스 개념 정리](https://hsdevstudy.tistory.com/45)
+- [인덱스 적용 후 테스트 성능 보고서](https://hsdevstudy.tistory.com/46)
+- [MSA 환경에서 트랜잭션 처리 문서](https://hsdevstudy.tistory.com/47)
+- [부하 테스트 보고서 및 장애 대응](https://hsdevstudy.tistory.com/49)
 
 ---
 ### 동시성 제어
@@ -205,12 +207,11 @@
 
 ---
 
-### API Swagger 
-https://app.swaggerhub.com/apis-docs/HANSEOK8541/E-commerce/1.0.0
 
----
-
-### 포인트 충전
+### API별 시퀀스 다이어그램
+<details>
+<summary><strong>포인트 충전</strong></summary>
+	
 ```mermaid
 %% 포인트 충전
 sequenceDiagram
@@ -235,10 +236,11 @@ sequenceDiagram
     포인트 Controller-->>사용자: 충전 된 포인트 반환
     deactivate 포인트 Controller
 ```
----
+</details>
 
+<details>
+<summary><strong>포인트 조회</strong></summary>	
 
-### 포인트 조회
 ```mermaid
 %%포인트 조회
 sequenceDiagram
@@ -261,9 +263,13 @@ sequenceDiagram
 			포인트 Controller-->> 사용자 : 현재 포인트 반환
 			deactivate 포인트 Controller
 ```
----
-### 상품 조회
+</details>
+
+<details>
+<summary><strong>상품 조회</strong></summary>
+
 ```mermaid
+%%상품 조회
 sequenceDiagram
 			participant 사용자
 			participant 상품 Controller
@@ -285,11 +291,13 @@ sequenceDiagram
 			상품 Controller-->>사용자 : 상품정보 목록 반환
 			deactivate 상품 Controller
 ```
----
+</details>
 
-
-### 선착순 쿠폰 발급
+<details>
+<summary><strong>선착순 쿠폰 발급</strong></summary>
+	
 ```mermaid
+%%선착순 쿠폰 발급
 sequenceDiagram
 			participant 사용자
 			participant 쿠폰 Controller
@@ -322,11 +330,13 @@ sequenceDiagram
 			쿠폰 Controller-->>사용자 : 발급 된 쿠폰 정보
 			deactivate 쿠폰 Controller
 ```
----
+</details>
 
-
-### 보유 쿠폰 목록 조회
+<details>
+<summary><strong>보유 쿠폰 목록 조회</strong></summary>
+	
 ```mermaid
+%%보유 쿠폰 목록 조회
 sequenceDiagram
 			participant 사용자
 			participant 쿠폰 Controller
@@ -347,11 +357,13 @@ sequenceDiagram
 			쿠폰 Controller-->> 사용자 : 보유쿠폰 목록
 			deactivate 쿠폰 Controller
 ```
----
+</details>
 
+<details>
+<summary><strong>주문</strong></summary>
 
-### 주문
 ```mermaid
+%%주문
 sequenceDiagram
 			participant 사용자
 			participant 주문 Controller
@@ -384,11 +396,13 @@ sequenceDiagram
 			deactivate 주문 Domain 
 			주문 Controller-->> 사용자 : 생성된 주문 반환
 ```
----
+</details>
 
+<details>
+<summary><strong>결제</strong></summary>
 
-### 결제
 ```mermaid
+%%결제
 sequenceDiagram
 			participant 사용자
 			participant 결제 Controller
@@ -414,3 +428,4 @@ sequenceDiagram
 			결제 Controller -->> 사용자 : 결제 성공
 			deactivate 결제 Controller
 ```
+</details>
