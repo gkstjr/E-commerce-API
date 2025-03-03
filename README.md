@@ -1,5 +1,5 @@
 
-### 블로그 보고서 정리
+## 블로그 보고서 정리
 - [API Swagger(명세서)](https://app.swaggerhub.com/apis-docs/HANSEOK8541/E-commerce/1.0.0)
 - [캐시(전략) 개념 정리](https://hsdevstudy.tistory.com/43)
 - [E-Commerce Redis사용 보고서](https://hsdevstudy.tistory.com/44)
@@ -8,8 +8,9 @@
 - [MSA 환경에서 트랜잭션 처리 문서](https://hsdevstudy.tistory.com/47)
 - [부하 테스트 보고서 및 장애 대응](https://hsdevstudy.tistory.com/49)
 
----
-### 동시성 제어
+<br>
+
+## 동시성 제어
 
 <details>
 <summary><strong> 주요 동시성 문제 개념 이해 (학습용)</strong></summary>
@@ -205,10 +206,9 @@
 
 </details>
 
----
+<br>
 
-
-### API별 시퀀스 다이어그램
+## API별 시퀀스 다이어그램
 <details>
 <summary><strong>포인트 충전</strong></summary>
 	
@@ -429,3 +429,17 @@ sequenceDiagram
 			deactivate 결제 Controller
 ```
 </details>
+
+<br>
+
+## Getting Started
+
+### Prerequisites
+- Docker가 설치되어 있어야 합니다.
+- `docker-compose`가 사용 가능한 환경이어야 합니다.
+
+### Running Docker Containers
+`local` 프로파일로 실행하기 위해 **설정된 인프라 컨테이너**를 실행해야 합니다.
+
+```sh
+docker-compose up -d
