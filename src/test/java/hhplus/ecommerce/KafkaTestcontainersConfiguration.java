@@ -7,7 +7,6 @@ import org.testcontainers.utility.DockerImageName;
 
 @Configuration
 class KafkaTestcontainersConfiguration {
-
     private static final ConfluentKafkaContainer KAFKA_CONTAINER;
 
     static {
