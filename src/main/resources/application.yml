@@ -7,7 +7,7 @@ spring:
     password: test
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
-      maximum-pool-size: 100
+      maximum-pool-size: 50
       connection-timeout: 10000
       max-lifetime: 60000
   jpa:
@@ -27,10 +27,3 @@ spring:
     redis:
       host: localhost
       port: 6379
-server:
-  tomcat:
-    threads:
-      max: 1000
-      min-spare: 100
-    accept-count: 500
-    connection-timeout: 5s
