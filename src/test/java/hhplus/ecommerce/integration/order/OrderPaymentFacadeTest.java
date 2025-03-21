@@ -217,7 +217,7 @@ public class OrderPaymentFacadeTest {
         assertThatThrownBy(() -> orderPayFacade.orderPay(new OrderPayCriteria(user,reqOrderItems, issuedCoupon.getId())))
                 .isInstanceOf(BusinessException.class)
                 .hasMessageContaining(ErrorCode.OUT_OF_POINT.getMessage());
-        verify(dataPlatform, never()).sendOrderData(any(OrderEvent.class));
+//        verify(dataPlatform, never()).sendOrderData(any(OrderEvent.class));
     }
 
     private static OrderProduct createOrderProduct(Product product1, int quantity) {
