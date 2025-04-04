@@ -441,6 +441,7 @@ sequenceDiagram
 - Docker가 설치되어 있어야 합니다.
 - `docker-compose`가 사용 가능한 환경이어야 합니다.
 
+
 ### Running Docker Containers
 `local` 프로파일로 실행하기 위해 **설정된 인프라 컨테이너**를 실행해야 합니다.
 
